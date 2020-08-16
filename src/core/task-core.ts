@@ -127,7 +127,7 @@ export class TaskApp {
                         System: ['OS', 'CPU'],
                         Binaries: ['Node', 'Yarn', 'npm'],
                         Browsers: ['Chrome', 'Edge', 'Firefox', 'Safari'],
-                        npmPackages: '/**/{*vue-ops*}',
+                        npmPackages: '',
                         npmGlobalPackages: ['vue-ops']
                     },
                     {

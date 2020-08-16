@@ -48,7 +48,7 @@ export function cleanArgs(cmd) {
 }
 
 export function enhanceErrorMessages(program: commander.Command, methodName, log) {
-  program.Command.prototype[methodName] = function(...args) {
+  commander.Command.prototype[methodName] = function(...args) {
     if (methodName === 'unknownOption' && this._allowUnknownOption) {
       return;
     }
