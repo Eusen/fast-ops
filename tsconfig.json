@@ -1,0 +1,24 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": true,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "importHelpers": false,
+    "target": "ESNext",
+    "module": "CommonJS",
+    "types": [
+      "@types/node"
+    ],
+    "lib": [
+      "ESNext",
+      "DOM"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "vue-ops",
+  "author": {
+    "name": "Eusen"
+  },
+  "version": "1.0.0",
+  "description": "Vue Operation Tools (base on Commander & Typescript)",
+  "scripts": {
+    "publish": "ts-node scripts/publish.ts"
+  },
+  "dependencies": {
+    "@types/node": "^14.0.27",
+    "chalk": "^4.1.0",
+    "commander": "^6.0.0",
+    "envinfo": "^7.7.2",
+    "import-global": "^0.1.0",
+    "inquirer": "^7.3.3",
+    "json-format": "^1.0.1",
+    "leven": "^3.1.0",
+    "rxjs": "^6.6.2",
+    "tslib": "^2.0.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "bin": {
+    "vue-ops": "bin/vue-ops.js"
+  },
+  "engines": {
+    "node": ">=8.9"
+  },
+  "main": "./src/index.ts",
+  "typings": "./src/index.ts",
+  "sideEffects": false,
+  "homepage": "https://github.com/Eusen/vue-opts#readme",
+  "bugs": {
+    "url": "https://github.com/Eusen/vue-opts/issues"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Eusen/vue-ops.git"
+  },
+  "keywords": [
+    "vue",
+    "project scripts"
+  ]
+}
