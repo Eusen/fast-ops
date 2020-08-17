@@ -1,10 +1,10 @@
 {
-  "name": "vue-ops",
+  "name": "fast-ops",
   "author": {
     "name": "Eusen"
   },
   "version": "1.0.0",
-  "description": "Vue Operation Tools (base on Commander & Typescript)",
+  "description": "Fast Operation Tools (base on Commander & Typescript)",
   "scripts": {
     "publish": "ts-node scripts/publish.ts"
   },
