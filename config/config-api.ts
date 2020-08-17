@@ -1,7 +1,7 @@
-import {ApiConfig} from "../src/core/config/api/api";
+import {ApiConfig} from "src/core/config/api/api";
 
-export const apis = ApiConfig.create({
-  root: '/demo/api/',
+export const api = ApiConfig.create({
+  root: '/src/services/api/',
   swaggers: [
     {
       name: '',

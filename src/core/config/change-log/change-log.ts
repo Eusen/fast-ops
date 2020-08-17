@@ -4,12 +4,12 @@ export interface ChangeLogDef {
 }
 
 export interface MajorVersion {
-  index?: number;
+  index?: number | string;
   current?: CurrentVersion[];
 }
 
 export interface CurrentVersion {
-  index?: number;
+  index?: number | string;
   incremental?: IncrementalVersion[];
 }
 
@@ -34,33 +34,22 @@ export type VersionTypes =
     | 'Shareware'
     | 'Full';
 
+export interface CommitLog {
+  target?: string;
+  description?: string;
+  by?: string;
+}
+
 export interface IncrementalVersion {
-  index?: number;
-  type?: VersionTypes;
-  repair?: IncrementalRepair[];
-  deprecated?: IncrementalDeprecated[];
-  newlyIncreased?: IncrementalNewlyIncreased[];
-  restructure?: IncrementalRestructure[];
-}
-
-export interface IncrementalRepair {
-  module?: string;
-  description?: string;
-}
-
-export interface IncrementalDeprecated {
-  module?: string;
-  description?: string;
-}
-
-export interface IncrementalNewlyIncreased {
-  module?: string;
-  description?: string;
-}
-
-export interface IncrementalRestructure {
-  module?: string;
-  description?: string;
+  index?: number | string;
+  versionType?: VersionTypes;
+  feature?: CommitLog[];
+  fix?: CommitLog[];
+  docs?: CommitLog[];
+  refactor?: CommitLog[];
+  perf?: CommitLog[];
+  test?: CommitLog[];
+  chore?: CommitLog[];
 }
 
 export class ChangeLog {

@@ -18,6 +18,7 @@ export function fsReadFile(_path: string) {
  * 写文件
  */
 export function fsWriteFile(_path: string, content: string) {
+  fs.mkdirSync(path.dirname(_path), {recursive: true});
   fs.writeFileSync(_path, content);
 }
 
@@ -28,7 +29,7 @@ export function fsReadJson(_path: string) {
   try {
     return JSON.parse(fsReadFile(_path));
   } catch (e) {
-    throwError('file is not a JSON', e.message);
+    throwError(e.message);
   }
 }
 

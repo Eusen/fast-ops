@@ -6,11 +6,11 @@ import {ApiTask} from "./api/api";
 import {ChangeLogTask} from "./change-log/change-log";
 import {AutoTask} from "./auto/auto";
 
-const packageJson = loadPackageJson();
+const packageJson = loadPackageJson(true);
 
 export default new TaskApp({
   name: 'fops',
-  version: `${packageJson.name} ${packageJson.version}`,
+  version: `fops v${packageJson.version}`,
   tasks: [
     CreateTask,
     ApiTask,

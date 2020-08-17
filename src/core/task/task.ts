@@ -41,12 +41,19 @@ export class Task<P = any> {
       const value = options[param.name];
 
       // 因为 commander 本身自带必填校验，所以这里不做处理
-      if (!value) return;
+      if (!value || !result) return;
 
       if (param.options) {
         if (!param.options.includes(value)) {
           result = false;
           logError(`param '${param.name}' must be one of ${param.options.join('|')}`);
+        }
+      }
+
+      if (param.regexp) {
+        if (!param.regexp.test(value)) {
+          result = false;
+          logError(`param '${param.name}' format not correct: ${value}`);
         }
       }
     });
@@ -132,7 +139,6 @@ export class TaskApp {
             case "boolean":
             case "number":
             case "string":
-              console.log(key, args[key].name, actionArgs[key]);
               _options[args[key].name] = actionArgs[key];
           }
           return _options;
@@ -140,7 +146,6 @@ export class TaskApp {
 
         // 检测选项是否合法
         if (!task.checkOptions(options)) return;
-
 
         task.run(options);
       });

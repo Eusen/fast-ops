@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import {pathJoin} from './_path';
+import {pathBack, pathJoin, pathResolve} from './_path';
 import {fsReadJson} from './_fs';
 
 export function loadModule(commandName, moduleName) {
@@ -21,8 +21,8 @@ export function loadModule(commandName, moduleName) {
           const installCommand = `npm install -g`;
           console.log();
           console.log(
-            `  Command ${chalk.cyan(`vue-ops ${commandName}`)} requires a global addon to be installed.\n` +
-            `  Please run ${chalk.cyan(`${installCommand} ${moduleName}`)} and try again.`
+              `  Command ${chalk.cyan(`vue-ops ${commandName}`)} requires a global addon to be installed.\n` +
+              `  Please run ${chalk.cyan(`${installCommand} ${moduleName}`)} and try again.`
           );
           console.log();
           process.exit(1);
@@ -36,32 +36,23 @@ export function loadModule(commandName, moduleName) {
   }
 }
 
-export function loadPackageJson() {
+export function loadPackageJson(fromSelf = false) {
   let json = null;
-  let safeCount = 0;
-  const jsonPaths = ['./package.json'];
+  let jsonPath = fromSelf ? pathJoin(__dirname, 'package.json') : pathResolve('package.json');
+
   while (!json) {
-    if (safeCount++ > 10) {
-      break;
-    }
-
     try {
-      json = require(jsonPaths.join('/'));
+      json = require(jsonPath);
     } catch (e) {
+      jsonPath = pathBack(jsonPath);
     }
-
-    if (json) {
-      break;
-    } else {
-      jsonPaths.unshift('..');
-    }
+    if (jsonPath === '.') break;
   }
   return json;
 }
 
 export function detectProjectType() {
-  const packageJsonPath = pathJoin(process.cwd(), 'package.json');
-  const packageJson = fsReadJson(packageJsonPath);
+  const packageJson = loadPackageJson();
   const dependenciesKeys = [...Object.keys(packageJson.dependencies || {}), ...Object.keys(packageJson.devDependencies || {})];
   const allDependencies = dependenciesKeys.join();
 

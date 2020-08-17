@@ -4,13 +4,14 @@ const messageTypeMap = {
   error: 'red',
   info: 'blue',
   warning: 'yellow',
+  success: 'green',
 };
 
 export function throwError(...messages: string[]) {
   throw new Error(messages.join(' '));
 }
 
-export function renderMessage(type: 'error' | 'info' | 'warning' | 'normal', ...message: string[]) {
+export function renderMessage(type: 'error' | 'info' | 'warning' | 'normal' | 'success', ...message: string[]) {
   const key = messageTypeMap[type];
   return key ? chalk[key](...message) : message.join(' ');
 }
@@ -25,6 +26,10 @@ export function logInfo(...message: string[]) {
 
 export function logWarning(...message: string[]) {
   console.log(renderMessage("warning", ...message));
+}
+
+export function logSuccess(...message: string[]) {
+  console.log(renderMessage("success", ...message));
 }
 
 export class Logger {
@@ -49,5 +54,9 @@ export class Logger {
 
   warning(...message: string[]) {
     logWarning(`[${this.flag}]`, ...message);
+  }
+
+  success(...message: string[]) {
+    logSuccess(`[${this.flag}]`, ...message);
   }
 }

@@ -1,7 +1,7 @@
 import {ChangeLog} from "src/core/config/change-log/change-log";
 
 export const changelog = ChangeLog.create({
-  name: 'vue-ops',
+  name: 'fops',
   major: [
     {
       index: 1,
@@ -11,12 +11,21 @@ export const changelog = ChangeLog.create({
           incremental: [
             {
               index: 0,
-              newlyIncreased: [
+              feature: [
                 {
-                  module: 'all',
+                  target: 'all',
                   description: '111111111',
                 }
               ],
+            },
+            {
+              index: 1,
+              docs: [
+                {
+                  target: '11231',
+                  description: '23123123123',
+                }
+              ]
             }
           ]
         }
