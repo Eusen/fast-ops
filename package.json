@@ -29,7 +29,7 @@
     "typescript": "^3.9.7"
   },
   "bin": {
-    "vue-ops": "bin/vue-ops.js"
+    "fops": "bin/fops.js"
   },
   "engines": {
     "node": ">=8.9"
