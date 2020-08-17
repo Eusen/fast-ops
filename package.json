@@ -37,14 +37,14 @@
   "main": "./src/index.ts",
   "typings": "./src/index.ts",
   "sideEffects": false,
-  "homepage": "https://github.com/Eusen/vue-opts#readme",
+  "homepage": "https://github.com/Eusen/fast-opts#readme",
   "bugs": {
-    "url": "https://github.com/Eusen/vue-opts/issues"
+    "url": "https://github.com/Eusen/fast-opts/issues"
   },
   "license": "Apache License",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/Eusen/vue-ops.git"
+    "url": "git+ssh://git@github.com/Eusen/fast-ops.git"
   },
   "keywords": [
     "vue",
