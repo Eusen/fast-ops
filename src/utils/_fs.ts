@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import jsonFormat from 'json-format';
-import {throwError} from './_errors';
+import {throwError} from './_logger';
 
 /**
  * 读取文件

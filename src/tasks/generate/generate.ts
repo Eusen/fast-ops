@@ -1,7 +1,9 @@
-import {Task, TaskDef} from '../../core/task';
-import {detectProjectType, fsExists, pathJoin} from '../../utils';
+import {Task, TaskDef} from "../../core/task/task";
+import {detectProjectType, fsExists, Logger, pathJoin} from '../../utils';
+import chalk from "chalk";
 
 const Types = {page: null, component: null};
+const logger = Logger.create('generate');
 
 export type GenerateTaskTypes = keyof typeof Types;
 
@@ -10,25 +12,29 @@ export interface GenerateTaskParams {
   name: string;
 }
 
-export class GenerateTask implements Task<GenerateTaskParams> {
+export class GenerateTask extends Task<GenerateTaskParams> {
   define(): TaskDef {
+    const types = Object.keys(Types);
+
     return {
       name: 'generate',
       alias: 'g',
+      description: `generate component or page`,
       params: [
         {
           name: 'type',
           alias: 't',
+          description: `Generate type`,
           isArg: true,
           isRequired: true,
-          options: Object.keys(Types),
+          options: types,
         },
         {
           name: 'name',
+          description: 'Must be a legal variable name.',
           isArg: true,
           isRequired: true,
-          options: Object.keys(Types),
-        }
+        },
       ]
     };
   }
@@ -39,7 +45,7 @@ export class GenerateTask implements Task<GenerateTaskParams> {
     const templateRootPath = pathJoin(__dirname, 'templates', projectType);
 
     if (!fsExists(templateRootPath)) {
-      return console.error(`  Project type is not currently supported: '${projectType}'`);
+      return logger.error(`Currently project type is not supported: '${projectType}'`);
     }
   }
 }

@@ -1,6 +1,6 @@
-import {createChangeLog} from "../src/core/change-log";
+import {ChangeLog} from "src/core/config/change-log/change-log";
 
-export default createChangeLog({
+export default ChangeLog.create({
   name: 'vue-ops',
   major: [
     {

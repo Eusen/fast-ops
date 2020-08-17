@@ -1,4 +1,4 @@
-export * from './_errors';
+export * from './_logger';
 export * from './_fs';
 export * from './_path';
 export * from './_valid';

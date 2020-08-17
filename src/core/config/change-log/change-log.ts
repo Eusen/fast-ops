@@ -1,4 +1,4 @@
-export interface ChangeLog {
+export interface ChangeLogDef {
   name?: string;
   major?: MajorVersion[];
 }
@@ -63,6 +63,6 @@ export interface IncrementalRestructure {
   description?: string;
 }
 
-export function createChangeLog(def: ChangeLog) {
-  return def;
+export class ChangeLog {
+  static create = (def: ChangeLogDef) => def;
 }

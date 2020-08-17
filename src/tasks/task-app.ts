@@ -1,4 +1,4 @@
-import {TaskApp} from '../core/task';
+import {TaskApp} from "../core/task/task";
 import {loadPackageJson} from '../utils';
 import {GenerateTask} from './generate/generate';
 
