@@ -1,4 +1,4 @@
-import {Task, TaskDef} from '../../core/task-core';
+import {Task, TaskDef} from '../../core/task';
 import {detectProjectType} from '../../utils';
 
 const Types = {page: null, component: null};
@@ -35,5 +35,14 @@ export class GenerateTask implements Task<GenerateTaskParams> {
 
   run(options: GenerateTaskParams) {
     const projectType = detectProjectType();
+
+    switch (projectType) {
+      case "vue":
+      case "uniapp":
+      case "taro":
+        break;
+      default:
+        console.error('  Unknown project type, please run this command in vue/uniapp/taro project');
+    }
   }
 }

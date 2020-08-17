@@ -41,7 +41,7 @@
   "bugs": {
     "url": "https://github.com/Eusen/vue-opts/issues"
   },
-  "license": "ISC",
+  "license": "Apache License",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/Eusen/vue-ops.git"

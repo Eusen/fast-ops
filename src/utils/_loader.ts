@@ -65,11 +65,15 @@ export function detectProjectType() {
   const dependenciesKeys = [...Object.keys(packageJson.dependencies || {}), ...Object.keys(packageJson.devDependencies || {})];
   const allDependencies = dependenciesKeys.join();
 
-  if (allDependencies.includes('dcloudio')) {
+  if (allDependencies.includes('@dcloudio')) {
     return 'uniapp';
   }
 
-  if (allDependencies.includes('vue')) {
+  if (allDependencies.includes('@taro')) {
+    return 'taro';
+  }
+
+  if (allDependencies.includes('@vue')) {
     return 'vue';
   }
 

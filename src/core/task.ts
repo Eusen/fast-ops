@@ -120,7 +120,7 @@ export class TaskApp {
         this.command
             .command('info')
             .description('print debugging information about your environment')
-            .action((cmd) => {
+            .action(() => {
                 console.log(chalk.bold('\nEnvironment Info:'));
                 envinfo.run(
                     {
@@ -165,7 +165,7 @@ export class TaskApp {
         if (!process.argv.slice(2).length) {
             this.command.outputHelp();
         } else {
-            // run this.command
+            // run command
             this.command.parse(process.argv);
         }
     }
