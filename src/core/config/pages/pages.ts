@@ -3,6 +3,6 @@ import {AppPageConfig} from "./app/app";
 
 export type PageConfigDef = AppPageConfig | MiniAppPageConfig;
 
-export class PageConfig {
+export class PagesConfig {
   static create = (def: PageConfigDef) => def;
 }

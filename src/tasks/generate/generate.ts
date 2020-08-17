@@ -1,6 +1,5 @@
 import {Task, TaskDef} from "../../core/task/task";
 import {detectProjectType, fsExists, Logger, pathJoin} from '../../utils';
-import chalk from "chalk";
 
 const Types = {page: null, component: null};
 const logger = Logger.create('generate');
@@ -31,6 +30,7 @@ export class GenerateTask extends Task<GenerateTaskParams> {
         },
         {
           name: 'name',
+          regexp: /^[a-zA-Z$_]{1}[a-zA-Z$_\d]{0,50}$/,
           description: 'Must be a legal variable name.',
           isArg: true,
           isRequired: true,

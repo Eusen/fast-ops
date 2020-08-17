@@ -1,7 +1,7 @@
 import commander from 'commander';
 import chalk from 'chalk';
 import envinfo from 'envinfo';
-import {cleanArgs, enhanceErrorMessages, logError, renderMessage, suggestCommands} from '../../utils';
+import {enhanceErrorMessages, logError, renderMessage, suggestCommands} from '../../utils';
 
 const hasParams = !!process.argv.slice(2).length;
 
@@ -81,16 +81,17 @@ export class TaskApp {
     tasks.forEach(task => {
       const def = task.define();
 
-      const args = def.params.filter(p => p.isArg);
-      const params = def.params.filter(p => !p.isArg);
+      // split params & args
+      const args = def.params ? def.params.filter(p => p.isArg) : [];
+      const params = def.params ? def.params.filter(p => !p.isArg) : [];
 
-      const name = [
-        def.name,
-        ...args.map(p => getArgName(p))
-      ].join(' ');
+      // mix name
+      const name = [def.name, ...args.map(p => getArgName(p))].join(' ');
 
+      // create cmd
       const cmd = this.command.command(name);
 
+      // check params, if has params, print detail of args
       if (hasParams) {
         const descriptions = [];
         descriptions.push('Arguments:');
@@ -104,36 +105,38 @@ export class TaskApp {
         cmd.description(def.description);
       }
 
-
+      // set alias
       cmd.alias(def.alias);
 
       params.forEach(p => {
         const paramNames = [];
-
         if (p.alias) paramNames.push(`-${p.alias}`);
-
-        if (p.isValueRequired) {
-          paramNames.push(`--${p.name} <${p.name}>`);
-        } else {
-          paramNames.push(`--${p.name}`);
-        }
-
+        paramNames.push(`--${p.name} ${getArgName(p)}`);
         const paramName = paramNames.join(', ');
-
-        console.log(paramName);
-
-        cmd.option(paramName, p.description, p.defaultValue);
+        cmd.option(paramName, p.description, p.regexp, p.defaultValue);
       });
 
       cmd.action(function action() {
-        const args = arguments;
-        const keys = Object.keys(arguments);
+        const actionArgs = arguments;
+        const keys = Object.keys(actionArgs);
 
-        const cmdKey = keys.pop();
+        const actionCmd = keys.reduce((cmdInstance, key) => {
+          if (actionArgs[key] instanceof commander.Command) {
+            cmdInstance = actionArgs[key];
+          }
+          return cmdInstance;
+        }, null as commander.Command);
+
         const options = keys.reduce((_options, key) => {
-          _options[args[key].name] = args[key];
+          switch (typeof actionArgs[key]) {
+            case "boolean":
+            case "number":
+            case "string":
+              console.log(key, args[key].name, actionArgs[key]);
+              _options[args[key].name] = actionArgs[key];
+          }
           return _options;
-        }, cleanArgs(args[cmdKey]));
+        }, actionCmd.opts());
 
         // 检测选项是否合法
         if (!task.checkOptions(options)) return;

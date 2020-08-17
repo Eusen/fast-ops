@@ -8,11 +8,7 @@
   "scripts": {
     "publish": "ts-node scripts/publish.ts"
   },
-  "devDependencies": {
-    "vue": "^2.6.11",
-    "vue-router": "^3.4.3",
-    "vue-property-decorator": "^9.0.0"
-  },
+  "devDependencies": {},
   "dependencies": {
     "@types/node": "^14.0.27",
     "chalk": "^4.1.0",
