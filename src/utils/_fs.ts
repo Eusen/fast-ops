@@ -161,3 +161,7 @@ export function fsCleanDir(_path: string, root = true) {
     }
   });
 }
+
+export function fsExists(_path: string) {
+  return fs.existsSync(_path);
+}

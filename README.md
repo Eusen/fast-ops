@@ -1,6 +1,6 @@
-# Vue Ops
+# Fast Ops
 
-Vue 运维工具
+快速前端运维工具
 
 ## 用法
 
