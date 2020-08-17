@@ -1,3 +1,4 @@
+import ejs from 'ejs';
 import {Task, TaskDef} from "../../core/task/task";
 import {
   detectProjectType,
@@ -9,7 +10,6 @@ import {
   pathBasename,
   pathJoin,
 } from '../../utils';
-import EJS from 'ejs';
 import {parseHumpFieldName, parseHumpName, parseSkewerName} from "../../utils/_parser";
 
 const Types = {page: null, component: null};
@@ -42,7 +42,7 @@ export class GenerateTask extends Task<GenerateTaskParams> {
         },
         {
           name: 'name',
-          regexp: /^[a-zA-Z$_]{1}[a-zA-Z$_-\d]{0,50}$/,
+          regexp: /^[a-zA-Z$_]{1}[a-zA-Z$\-_\d]{0,50}$/,
           description: 'Must be a legal variable name.',
           isArg: true,
           isRequired: true,
@@ -76,7 +76,7 @@ export class GenerateTask extends Task<GenerateTaskParams> {
       const fileContent = fsReadFile(filepath);
 
       const targetFilepath = pathJoin(rootDir, pathBasename(filename.replace('name', data.selectorName), '.ejs'));
-      const targetFileContent = EJS.render(fileContent, data);
+      const targetFileContent = ejs.render(fileContent, data);
 
       fsWriteFile(targetFilepath, targetFileContent);
     });
