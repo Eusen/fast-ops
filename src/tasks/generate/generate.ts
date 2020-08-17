@@ -34,8 +34,6 @@ export class GenerateTask implements Task<GenerateTaskParams> {
   }
 
   run(options: GenerateTaskParams) {
-    console.log(options);
     const projectType = detectProjectType();
-    console.log(projectType);
   }
 }

@@ -1,0 +1,20 @@
+import {Component, Prop} from "vue-property-decorator";
+import {ServicesMixin} from "@vue-ops/service";
+
+
+@Component()
+export class <%= className %>Component extends ServicesMixin {
+  @Prop() title!: string;
+
+  created() {
+  }
+
+  mounted() {
+  }
+
+  updated() {
+  }
+
+  destroyed() {
+  }
+}
